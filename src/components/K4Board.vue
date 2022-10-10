@@ -116,7 +116,7 @@
 
 <template>
     <h1 v-if="winner.length > 0">Player <span :class="getPlayerColor(winner === '1' ? 'one' : 'two') === 'colorone' ? 'winnerone' : 'winnertwo'">{{winner}}</span> Wins!</h1>
-    <table>
+    <table :class="winner.length > 0 ? 'winner' : ''">
       <thead v-if="winner.length === 0">
         <tr>
           <th v-for="column, index in props.board_columns" :key="'h' + column">
@@ -145,7 +145,7 @@
     color: #ddd;
     margin-block-start: 0em;
     margin-block-end: 0em;
-    margin-bottom: 30px;
+    margin-bottom: 11px;
   }
   span.winnerone {
     color: #ff0000;
@@ -157,13 +157,18 @@
     border: none;
     border-collapse: collapse;
     padding: 0;
-    min-width: 80%;
-    width: 80%;
-    max-width: 80%;
-    min-height: 70vh;
-    height: 70vh;
-    max-height: 70vh;
+    min-width: 50vmin;
+    width: 100vmin;
+    max-width: 100vmin;
+    min-height: 42vmin;
+    height: 70vmin;
+    max-height: 70vmin;
     margin: 0 auto;
+  }
+  table.winner {
+    min-height: 36vmin;
+    height: 60vmin;
+    max-height: 60vmin;
   }
   thead,
   tbody {
@@ -173,18 +178,15 @@
     border: none;
     border-collapse: collapse;
     padding: 0;
-    min-width: 100%;
-    width: 100%;
-    max-width: 100%;
     background-color: transparent;
   }
   th {
     border: none;
     border-collapse: collapse;
     padding: 0;
-    min-height: 10vh;
-    height: 10vh;
-    max-height: 10vh;
+    min-height: 6vmin;
+    height: 10vmin;
+    max-height: 10vmin;
     background: transparent;
   }
   .colorone:hover {
@@ -201,9 +203,9 @@
     border: none;
     border-collapse: collapse;
     padding: 0;
-    min-height: 60vh;
-    height: 60vh;
-    max-height: 60vh;
+    min-height: 36vmin;
+    height: 60vmin;
+    max-height: 60vmin;
     background: #999999;
   }
   th > div,
@@ -222,9 +224,9 @@
     min-width: 100%;
     width: 100%;
     max-width: 100%;
-    min-height: 10vh;
-    height: 10vh;
-    max-height: 10vh;
+    min-height: 6vmin;
+    height: 10vmin;
+    max-height: 10vmin;
   }
   th div div.colorone,
   th div div.colortwo {

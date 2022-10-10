@@ -2,75 +2,65 @@
   import { onMounted, ref } from 'vue';
   import K4Board from '../components/K4Board.vue';
 
-  const colors = Object({
-    colorone: {
-      type: String,
-      value: "colorone"
-    },
-    colortwo: {
-      type: String,
-      value: "colortwo"
-    }
-  })
-
   const gamestart = ref(false)
-  const gameState = {
+  const gamestate = {
     board_columns: {
-        type: Number,
-        value: 7
-      },
-      board_rows: {
-        type: Number,
-        value: 6
-      },
-      playerone: {
-        type: String,
-        value: ''
-      },
-      playertwo: {
-        type: String,
-        value: ''
-      },
-      dropstate: {
-        type: Array,
-        value: Array(Array(),Array(),Array(),Array(),Array(),Array(),Array())
-      }
+      type: Number(),
+      value: 7
+    },
+    board_rows: {
+      type: Number(),
+      value: 6
+    },
+    playerone: {
+      type: String(),
+      value: ''
+    },
+    playertwo: {
+      type: String(),
+      value: ''
+    },
+    dropstate: {
+      type: Array(Array<string>()),
+      value: Array(Array(),Array(),Array(),Array(),Array(),Array(),Array())
+    }
   }
 
   const initDropState = () => {
-    for (let z = 0; z < gameState.board_columns.value; z++) {
-      for (let y = 0; y < gameState.board_rows.value; y++) {
-        gameState.dropstate.value[z].push('0')
+    for (let z = 0; z < gamestate.board_columns.value; z++) {
+      for (let y = 0; y < gamestate.board_rows.value; y++) {
+        gamestate.dropstate.value[z].push('0')
       }
     }
   }
 
   const setPlayerColors = (pick:string) => {
-    gameState.playerone.value = pick;
-    gameState.playertwo.value = pick === colors.colorone.value ? colors.colortwo.value : colors.colorone.value;
+    gamestate.playerone.value = pick;
+    gamestate.playertwo.value = pick === 'colorone' ? 'colortwo' : 'colorone';
     gamestart.value = true;
   }
 
   onMounted(() => {
     initDropState()
   })
+
 </script>
 
 <template>
   <div v-if="!gamestart">
     <p>Take turns dropping a token in any column. Be the first to form a horizontal, vertical, or diagonal line of four of your tokens!</p>
     <p id="guide">To play, hover over column to activate, then click to drop token.</p>
-    <p id="colorpick">Choose token color for Player One: <span @click="setPlayerColors(colors.colorone.value)"></span><span @click="setPlayerColors(colors.colortwo.value)"></span></p>
+    <p id="colorpick">Choose token color for Player One: <span @click="setPlayerColors('colorone')"></span><span @click="setPlayerColors('colortwo')"></span></p>
   </div>
   <Transition>
     <div v-if="gamestart">
       <K4Board
         :gamestart="gamestart"
-        :board_columns="gameState.board_columns.value"
-        :board_rows="gameState.board_rows.value"
-        :p1color="gameState.playerone.value"
-        :p2color="gameState.playertwo.value"
-        :dropstate="gameState.dropstate.value"
+        :board_columns="gamestate.board_columns.value"
+        :board_rows="gamestate.board_rows.value"
+        :p1color="gamestate.playerone.value"
+        :p2color="gamestate.playertwo.value"
+        :dropstate="gamestate.dropstate.value"
       >
       </K4Board>
     </div>
@@ -78,7 +68,6 @@
 </template>
 
 <style scoped>
-  div,
   p,
   #guide,
   #colorpick {
