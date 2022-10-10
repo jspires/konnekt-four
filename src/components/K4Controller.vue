@@ -33,14 +33,14 @@
       },
       dropstate: {
         type: Array,
-        value: Array(Array(Number()),Array(Number()),Array(Number()),Array(Number()),Array(Number()),Array(Number()),Array(Number()))
+        value: Array(Array(),Array(),Array(),Array(),Array(),Array(),Array())
       }
   }
 
   const initDropState = () => {
     for (let z = 0; z < gameState.board_columns.value; z++) {
       for (let y = 0; y < gameState.board_rows.value; y++) {
-        gameState.dropstate.value[z].push(-1)
+        gameState.dropstate.value[z].push('0')
       }
     }
   }
@@ -63,15 +63,17 @@
     <p id="colorpick">Choose token color for Player One: <span @click="setPlayerColors(colors.colorone.value)"></span><span @click="setPlayerColors(colors.colortwo.value)"></span></p>
   </div>
   <Transition>
-    <K4Board v-if="gamestart"
-      :gamestart="gamestart"
-      :board_columns="gameState.board_columns.value"
-      :board_rows="gameState.board_rows.value"
-      :p1color="gameState.playerone.value"
-      :p2color="gameState.playertwo.value"
-      :dropstate="gameState.dropstate.value"
-    >
-    </K4Board>
+    <div v-if="gamestart">
+      <K4Board
+        :gamestart="gamestart"
+        :board_columns="gameState.board_columns.value"
+        :board_rows="gameState.board_rows.value"
+        :p1color="gameState.playerone.value"
+        :p2color="gameState.playertwo.value"
+        :dropstate="gameState.dropstate.value"
+      >
+      </K4Board>
+    </div>
   </Transition>
 </template>
 
@@ -105,16 +107,13 @@
   #colorpick span:last-child {
     background-color: yellow;
   }
-  .v-enter-active,
-  .v-leave-active {
-    transition: opacity 1s ease;
+  .v-enter-active {
+    transition: opacity 2s;
   }
-  .v-enter-from,
-  .v-leave-to {
+  .v-enter-from {
     opacity: 0;
   }
-  .v-enter-to,
-  .v-leave-from {
+  .v-enter-to {
     opacity: 1
   }
   </style>
