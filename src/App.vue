@@ -12,5 +12,11 @@
     margin-block-start: 0em;
     margin-block-end: 0em;
     margin-bottom: 0px;
+    font-size: 3.2em;
+    line-height: 1.1;
+    color: #ff0000;
+  }
+  h1 > span {
+    color: #ffff00;
   }
 </style>
