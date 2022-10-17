@@ -1,16 +1,54 @@
-# Vue 3 + TypeScript + Vite
+# KonnektFour
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+An emulation of the popular tabletop game using Vue 3 Composition API + TypeScript + Vite.
 
-## Recommended IDE Setup
+## Generate a Repo and Clone
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+Create your own repository by clicking the "Use this template" button at the top of this repository page (https://github.com/jspires/konnekt-four/generate).
 
-## Type Support For `.vue` Imports in TS
+Clone to a local repository:
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+```bash
+git clone <your-new-repository-https-or-ssh-url> 
+cd <your-new-repository-name>
+```
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+## Install vite locally if you don't have it
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+To your project:
+
+```bash
+npm i vite
+```
+Or globally:
+
+```bash
+npm i -g vite
+```
+
+## View and play via dev server
+
+```bash
+npm run dev
+```
+
+And point your browser to localhost:5173 (http://127.0.0.1:5173/)
+
+## View and play via build and preview:
+
+Build:
+
+```bash
+npm run build
+```
+
+Then preview:
+
+```bash
+npm run preview
+```
+
+And point your browser to localhost:4173 (http://127.0.0.1:4173/)
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
