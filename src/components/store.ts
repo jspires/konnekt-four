@@ -9,11 +9,11 @@ export type state = {
   p1color: string;
   p2color: string;
   drop_state: string[][];
-  initDropState: Function;
-  setPlayerColors: Function;
-  dropToken: Function;
-  testForwin: Function;
-  resetGame: Function;
+  initDropState: () => void;
+  setPlayerColors: (pick: string) => void;
+  dropToken: (column: number) => void;
+  testForwin: () => void;
+  resetGame: () => void;
 }
 
 export const state = reactive({
@@ -24,11 +24,11 @@ export const state = reactive({
   winner: '',
   p1color: '',
   p2color: '',
-  dropstate: Array(Array(),Array(),Array(),Array(),Array(),Array(),Array()),
+  dropstate: [[''],[''],[''],[''],[''],[''],['']],
   initDropState() {
     for (let z = 0; z < this.board_columns; z++) {
       for (let y = 0; y < this.board_rows; y++) {
-        this.dropstate[z].push('0')
+        this.dropstate[z][y] = '0'
       }
     }
   },
@@ -40,10 +40,8 @@ export const state = reactive({
   dropToken(column: number) {
     if (!this.dropstate[column].includes('0')) {return false}
     else {
-      let trackarr = Array<number>(column);
       for (let n = 5; n > -1; n--) {
         if (this.dropstate[column][n] === '0') {
-          trackarr.push(n),
           this.dropstate[column][n] = this.turn ? '2' : '1';
           break;
         } 
@@ -53,7 +51,7 @@ export const state = reactive({
     }
   },
   testForWin() {
-    let testarr = Array<string>();
+    let testarr = [''];
     // columns
     for (let z = 0; z < this.dropstate.length; z++) {
       for (let n = this.dropstate[z].length - 1; n > -1 ; n--) {
@@ -106,7 +104,7 @@ export const state = reactive({
     this.p2color = '';
     this.turn = false;
     this.gamestart = false;
-    this.dropstate = Array(Array(),Array(),Array(),Array(),Array(),Array(),Array());
+    this.dropstate = [[],[],[],[],[],[],[]];
     this.initDropState();
   }
   
